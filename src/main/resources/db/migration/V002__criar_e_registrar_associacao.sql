@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS associacao (
 	cnpj VARCHAR(15) UNIQUE,
 	sigla VARCHAR(10),
 	nome VARCHAR(150),
-	cidade VARCHAR(150)
+	cidade VARCHAR(150),
+	data_cadastro TIMESTAMP NOT NULL DEFAULT 'now()'
 );
 
 INSERT INTO associacao (cnpj, sigla, nome, cidade) VALUES ('09207998000174', 'A.A.A', 'Associacao AA', 'Joaquim Tavora');

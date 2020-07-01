@@ -1,5 +1,7 @@
 package com.torneioapi.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,19 @@ public class Associacao {
 	private String nome;
 	
 	private String cidade;
+	
+	private Timestamp data_cadastro;
+	
+	
+	
+
+	public Timestamp getData_cadastro() {
+		return data_cadastro;
+	}
+
+	public void setData_cadastro(Timestamp data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,6 +88,7 @@ public class Associacao {
 		int result = 1;
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
@@ -98,6 +114,11 @@ public class Associacao {
 				return false;
 		} else if (!cnpj.equals(other.cnpj))
 			return false;
+		if (data_cadastro == null) {
+			if (other.data_cadastro != null)
+				return false;
+		} else if (!data_cadastro.equals(other.data_cadastro))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -114,7 +135,9 @@ public class Associacao {
 		} else if (!sigla.equals(other.sigla))
 			return false;
 		return true;
-	}	
+	}
+
+	
 	
 
 }

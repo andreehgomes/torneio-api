@@ -50,7 +50,7 @@ public class AssociacaoResource {
 
 	@PostMapping
 	public ResponseEntity<Associacao> incluir(@Valid @RequestBody Associacao associacao, HttpServletResponse response) {
-		Associacao associacaoSalva = associacaoRepository.save(associacao);
+		Associacao associacaoSalva = associacaoRepository.save(associacaoService.incluir(associacao));
 
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, associacaoSalva.getId()));
 
