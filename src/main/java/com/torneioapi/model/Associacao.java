@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "associacao")
 public class Associacao {
@@ -33,6 +35,7 @@ public class Associacao {
 
 	private Timestamp data_cadastro;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "associacao")
 	/* @JoinColumn(name = "fk_id_associacao") */
 	private List<Criador> criadores;
