@@ -1,11 +1,15 @@
 package com.torneioapi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "endereco")
 public class Endereco {
 	
 	@Id
@@ -17,8 +21,15 @@ public class Endereco {
 	private String complemento;
 	private String cep;
 	
+	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
+	private Criador criador;
 	
-	
+	public Criador getCriador() {
+		return criador;
+	}
+	public void setCriador(Criador criador) {
+		this.criador = criador;
+	}
 	public Long getId() {
 		return id;
 	}

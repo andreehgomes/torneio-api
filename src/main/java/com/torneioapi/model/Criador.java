@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -32,8 +33,11 @@ public class Criador {
 	@ManyToOne
 	@JoinColumn(name = "fk_id_associacao")
 	private Associacao associacao;
-	private Long fk_id_endereco;
 	private Timestamp data_cadastro;
+	
+	@OneToOne
+	@JoinColumn(name = "fk_id_endereco")
+	private Endereco endereco;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
@@ -81,17 +85,24 @@ public class Criador {
 	public void setAssociacao(Associacao associacao) {
 		this.associacao = associacao;
 	}
-	public Long getFk_id_endereco() {
-		return fk_id_endereco;
-	}
-	public void setFk_id_endereco(Long fk_id_endereco) {
-		this.fk_id_endereco = fk_id_endereco;
-	}
+
 	public Timestamp getData_cadastro() {
 		return data_cadastro;
 	}
 	public void setData_cadastro(Timestamp data_cadastro) {
 		this.data_cadastro = data_cadastro;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	public List<Ave> getAves() {
+		return aves;
+	}
+	public void setAves(List<Ave> aves) {
+		this.aves = aves;
 	}
 	@Override
 	public int hashCode() {
@@ -99,9 +110,10 @@ public class Criador {
 		int result = 1;
 		result = prime * result + (adm ? 1231 : 1237);
 		result = prime * result + ((associacao == null) ? 0 : associacao.hashCode());
+		result = prime * result + ((aves == null) ? 0 : aves.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
-		result = prime * result + ((fk_id_endereco == null) ? 0 : fk_id_endereco.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((ibama == null) ? 0 : ibama.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
@@ -124,6 +136,11 @@ public class Criador {
 				return false;
 		} else if (!associacao.equals(other.associacao))
 			return false;
+		if (aves == null) {
+			if (other.aves != null)
+				return false;
+		} else if (!aves.equals(other.aves))
+			return false;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
@@ -134,10 +151,10 @@ public class Criador {
 				return false;
 		} else if (!data_cadastro.equals(other.data_cadastro))
 			return false;
-		if (fk_id_endereco == null) {
-			if (other.fk_id_endereco != null)
+		if (endereco == null) {
+			if (other.endereco != null)
 				return false;
-		} else if (!fk_id_endereco.equals(other.fk_id_endereco))
+		} else if (!endereco.equals(other.endereco))
 			return false;
 		if (ibama == null) {
 			if (other.ibama != null)
@@ -161,6 +178,8 @@ public class Criador {
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 
