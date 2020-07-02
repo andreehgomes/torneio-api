@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "endereco")
 public class Endereco {
@@ -21,6 +23,7 @@ public class Endereco {
 	private String complemento;
 	private String cep;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
 	private Criador criador;
 	

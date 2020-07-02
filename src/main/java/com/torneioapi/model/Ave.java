@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name ="ave")
 public class Ave {
@@ -29,6 +31,7 @@ public class Ave {
 	private String  medida_anilha;
 	private String numero_anilha;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fk_id_criador")
 	private Criador criador;

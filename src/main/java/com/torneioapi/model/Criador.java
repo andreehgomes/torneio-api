@@ -39,7 +39,6 @@ public class Criador {
 	@JoinColumn(name = "fk_id_endereco")
 	private Endereco endereco;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Ave> aves;
 	
