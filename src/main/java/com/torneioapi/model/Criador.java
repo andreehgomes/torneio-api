@@ -25,7 +25,6 @@ public class Criador {
 	private String sobrenome;
 	private String telefone;
 	private boolean adm;
-	/* private Long fk_id_associacao; */
 
 	@ManyToOne
 	@JoinColumn(name = "fk_id_associacao")

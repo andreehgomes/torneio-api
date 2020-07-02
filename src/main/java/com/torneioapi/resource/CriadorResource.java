@@ -29,7 +29,7 @@ public class CriadorResource {
 
 	@Autowired
 	private CriadorRepository criadorRepository;
-	
+
 	@Autowired
 	private CriadorService criadorService;
 
@@ -56,9 +56,9 @@ public class CriadorResource {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(criadorSalvo);
 	}
-	
+
 	@PutMapping("/{cpf}")
-	public ResponseEntity<Criador> atualizar(@PathVariable String cpf, @Valid @RequestBody Criador criador){
+	public ResponseEntity<Criador> atualizar(@PathVariable String cpf, @Valid @RequestBody Criador criador) {
 		Criador criadorSalvo = criadorService.atualizar(cpf, criador);
 		return ResponseEntity.status(HttpStatus.OK).body(criadorSalvo);
 	}
