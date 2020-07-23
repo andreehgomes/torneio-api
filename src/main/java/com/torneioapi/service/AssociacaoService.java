@@ -1,7 +1,6 @@
 package com.torneioapi.service;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.BeanUtils;
