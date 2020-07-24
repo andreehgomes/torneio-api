@@ -25,8 +25,8 @@ import com.torneioapi.model.Especie;
 import com.torneioapi.repository.EspecieRepository;
 import com.torneioapi.service.EspecieService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
-		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
+//		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
 @RestController
 @RequestMapping("/especies")
 public class EspecieResource {

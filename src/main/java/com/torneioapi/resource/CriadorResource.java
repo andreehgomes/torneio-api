@@ -25,8 +25,8 @@ import com.torneioapi.model.Criador;
 import com.torneioapi.repository.CriadorRepository;
 import com.torneioapi.service.CriadorService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
-		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
+//		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
 @RestController
 @RequestMapping("/criadores")
 public class CriadorResource {

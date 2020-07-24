@@ -25,8 +25,8 @@ import com.torneioapi.model.Ave;
 import com.torneioapi.repository.AveRepository;
 import com.torneioapi.service.AveService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
-		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
+//		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
 @RestController
 @RequestMapping("/aves")
 public class AveResource {

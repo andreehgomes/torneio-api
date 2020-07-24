@@ -25,8 +25,8 @@ import com.torneioapi.model.Endereco;
 import com.torneioapi.repository.EnderecoRepository;
 import com.torneioapi.service.EnderecoService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
-		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
+//		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
 @RestController
 @RequestMapping("/enderecos")
 public class EnderecoResource {

@@ -25,8 +25,8 @@ import com.torneioapi.model.Associacao;
 import com.torneioapi.repository.AssociacaoRepository;
 import com.torneioapi.service.AssociacaoService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
-		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
+//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET,
+//		RequestMethod.DELETE, RequestMethod.HEAD, RequestMethod.PATCH })
 @RestController
 @RequestMapping("/associacao")
 public class AssociacaoResource {
