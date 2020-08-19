@@ -38,6 +38,18 @@ public class Associacao {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "associacao")
 	/* @JoinColumn(name = "fk_id_associacao") */
 	private List<Criador> criadores;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "associacao")
+	private List<Temporada> temporadas;
+
+	public List<Temporada> getTemporadas() {
+		return temporadas;
+	}
+
+	public void setTemporadas(List<Temporada> temporadas) {
+		this.temporadas = temporadas;
+	}
 
 	public Timestamp getData_cadastro() {
 		return data_cadastro;
@@ -101,10 +113,12 @@ public class Associacao {
 		int result = 1;
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((criadores == null) ? 0 : criadores.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
+		result = prime * result + ((temporadas == null) ? 0 : temporadas.hashCode());
 		return result;
 	}
 
@@ -127,6 +141,11 @@ public class Associacao {
 				return false;
 		} else if (!cnpj.equals(other.cnpj))
 			return false;
+		if (criadores == null) {
+			if (other.criadores != null)
+				return false;
+		} else if (!criadores.equals(other.criadores))
+			return false;
 		if (data_cadastro == null) {
 			if (other.data_cadastro != null)
 				return false;
@@ -147,7 +166,14 @@ public class Associacao {
 				return false;
 		} else if (!sigla.equals(other.sigla))
 			return false;
+		if (temporadas == null) {
+			if (other.temporadas != null)
+				return false;
+		} else if (!temporadas.equals(other.temporadas))
+			return false;
 		return true;
 	}
+
+	
 
 }
