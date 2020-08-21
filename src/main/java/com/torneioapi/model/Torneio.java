@@ -38,7 +38,7 @@ public class Torneio {
 	private Temporada temporada;
 	
 	@NotNull
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "fk_id_especie")
 	private Especie especie;
 

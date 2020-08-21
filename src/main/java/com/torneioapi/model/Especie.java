@@ -34,6 +34,9 @@ public class Especie {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "especie")
 	private List<Ave> aves;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "especie")
+	private List<Torneio> torneios;
 
 	public Long getId() {
 		return id;
