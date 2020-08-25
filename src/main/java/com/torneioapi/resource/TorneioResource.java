@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.torneioapi.event.RecursoCriadoEvent;
 import com.torneioapi.model.Torneio;
 import com.torneioapi.repository.TorneioRepository;
+import com.torneioapi.service.TorneioService;
 
 @RestController
 @RequestMapping("/torneios")
@@ -30,6 +32,9 @@ public class TorneioResource {
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;	
+	
+	@Autowired
+	private TorneioService torneioService;
 	
 	@GetMapping
 	public List<Torneio> listar(){
@@ -50,5 +55,11 @@ public class TorneioResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, torneioSalvo.getId()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(torneioSalvo);
+	}
+	
+	@PutMapping("/{codigo}")
+	public ResponseEntity<Torneio> atualizar(@PathVariable Long codigo, @Valid @RequestBody Torneio torneio){
+		Torneio torneioSalvo = torneioService.atualizar(codigo, torneio);
+		return ResponseEntity.status(HttpStatus.OK).body(torneioSalvo);
 	}
 }
