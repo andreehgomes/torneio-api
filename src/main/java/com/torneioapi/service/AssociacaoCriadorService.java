@@ -1,0 +1,35 @@
+package com.torneioapi.service;
+
+import java.util.NoSuchElementException;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.torneioapi.model.AssociacaoCriador;
+import com.torneioapi.repository.AssociacaoCriadorRepository;
+
+@Service
+public class AssociacaoCriadorService {
+
+	@Autowired
+	private AssociacaoCriadorRepository associacaoCriadorRepository;
+	
+	public AssociacaoCriador atualizar(Long codigo, AssociacaoCriador associacaoCriador) {
+		AssociacaoCriador associacaoCriadorSalva = buscarAssociacaoCriadorPeloCodigo(codigo);
+		
+		BeanUtils.copyProperties(associacaoCriador, associacaoCriadorSalva, "id");
+		return associacaoCriadorRepository.save(associacaoCriadorSalva);
+	}
+	
+	private AssociacaoCriador buscarAssociacaoCriadorPeloCodigo(Long codigo) {
+		AssociacaoCriador associacaoCriadorSalva = associacaoCriadorRepository.findById(codigo).get();
+		
+		if(associacaoCriadorSalva == null) {
+			throw new NoSuchElementException();
+		}
+		
+		return associacaoCriadorSalva;
+	}
+	
+}
