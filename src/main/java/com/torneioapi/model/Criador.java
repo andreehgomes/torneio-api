@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "criador")
 public class Criador {
@@ -26,12 +28,11 @@ public class Criador {
 	private String nome;
 	private String sobrenome;
 	private String telefone;
-	private boolean adm;
-
-	@ManyToOne
-	@JoinColumn(name = "fk_id_associacao")
-	private Associacao associacao;
 	private Timestamp data_cadastro;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")	
+	private List<AssociacaoCriador> associacaoCriador;
 	
 	@OneToOne
 	@JoinColumn(name = "fk_id_endereco")
@@ -39,74 +40,84 @@ public class Criador {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Ave> aves;
-	
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public String getIbama() {
 		return ibama;
 	}
+
 	public void setIbama(String ibama) {
 		this.ibama = ibama;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getSobrenome() {
 		return sobrenome;
 	}
+
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
+
 	public String getTelefone() {
 		return telefone;
 	}
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-	public boolean isAdm() {
-		return adm;
-	}
-	public void setAdm(boolean adm) {
-		this.adm = adm;
-	}
-	public Associacao getAssociacao() {
-		return associacao;
-	}
-	public void setAssociacao(Associacao associacao) {
-		this.associacao = associacao;
 	}
 
 	public Timestamp getData_cadastro() {
 		return data_cadastro;
 	}
+
 	public void setData_cadastro(Timestamp data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
+
+	public List<AssociacaoCriador> getAssociacaoCriador() {
+		return associacaoCriador;
+	}
+
+	public void setAssociacaoCriador(List<AssociacaoCriador> associacaoCriador) {
+		this.associacaoCriador = associacaoCriador;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public List<Ave> getAves() {
 		return aves;
 	}
+
 	public void setAves(List<Ave> aves) {
 		this.aves = aves;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (adm ? 1231 : 1237);
-		result = prime * result + ((associacao == null) ? 0 : associacao.hashCode());
+		result = prime * result + ((associacaoCriador == null) ? 0 : associacaoCriador.hashCode());
 		result = prime * result + ((aves == null) ? 0 : aves.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
@@ -117,6 +128,7 @@ public class Criador {
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -126,12 +138,10 @@ public class Criador {
 		if (getClass() != obj.getClass())
 			return false;
 		Criador other = (Criador) obj;
-		if (adm != other.adm)
-			return false;
-		if (associacao == null) {
-			if (other.associacao != null)
+		if (associacaoCriador == null) {
+			if (other.associacaoCriador != null)
 				return false;
-		} else if (!associacao.equals(other.associacao))
+		} else if (!associacaoCriador.equals(other.associacaoCriador))
 			return false;
 		if (aves == null) {
 			if (other.aves != null)
@@ -176,8 +186,6 @@ public class Criador {
 		return true;
 	}
 	
-	
-	
-	
+		
 
 }

@@ -37,7 +37,7 @@ public class Associacao {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "associacao")
 	/* @JoinColumn(name = "fk_id_associacao") */
-	private List<Criador> criadores;
+	private List<AssociacaoCriador> associacaoCriador;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "associacao")
@@ -45,18 +45,6 @@ public class Associacao {
 
 	public List<Temporada> getTemporadas() {
 		return temporadas;
-	}
-
-	public void setTemporadas(List<Temporada> temporadas) {
-		this.temporadas = temporadas;
-	}
-
-	public Timestamp getData_cadastro() {
-		return data_cadastro;
-	}
-
-	public void setData_cadastro(Timestamp data_cadastro) {
-		this.data_cadastro = data_cadastro;
 	}
 
 	public Long getId() {
@@ -99,21 +87,33 @@ public class Associacao {
 		this.cidade = cidade;
 	}
 
-	public List<Criador> getCriadores() {
-		return criadores;
+	public Timestamp getData_cadastro() {
+		return data_cadastro;
 	}
 
-	public void setCriadores(List<Criador> criadores) {
-		this.criadores = criadores;
+	public void setData_cadastro(Timestamp data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
+
+	public List<AssociacaoCriador> getAssociacaoCriador() {
+		return associacaoCriador;
+	}
+
+	public void setAssociacaoCriador(List<AssociacaoCriador> associacaoCriador) {
+		this.associacaoCriador = associacaoCriador;
+	}
+
+	public void setTemporadas(List<Temporada> temporadas) {
+		this.temporadas = temporadas;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((associacaoCriador == null) ? 0 : associacaoCriador.hashCode());
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-		result = prime * result + ((criadores == null) ? 0 : criadores.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -131,6 +131,11 @@ public class Associacao {
 		if (getClass() != obj.getClass())
 			return false;
 		Associacao other = (Associacao) obj;
+		if (associacaoCriador == null) {
+			if (other.associacaoCriador != null)
+				return false;
+		} else if (!associacaoCriador.equals(other.associacaoCriador))
+			return false;
 		if (cidade == null) {
 			if (other.cidade != null)
 				return false;
@@ -140,11 +145,6 @@ public class Associacao {
 			if (other.cnpj != null)
 				return false;
 		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		if (criadores == null) {
-			if (other.criadores != null)
-				return false;
-		} else if (!criadores.equals(other.criadores))
 			return false;
 		if (data_cadastro == null) {
 			if (other.data_cadastro != null)
@@ -174,6 +174,7 @@ public class Associacao {
 		return true;
 	}
 
+	
 	
 
 }
