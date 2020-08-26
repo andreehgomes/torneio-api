@@ -1,5 +1,6 @@
 package com.torneioapi.service;
 
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,12 @@ public class AssociacaoCriadorService {
 
 	@Autowired
 	private AssociacaoCriadorRepository associacaoCriadorRepository;
+	
+	public AssociacaoCriador incluir(AssociacaoCriador associaoCriador) {
+		AssociacaoCriador associacaoCriadorNova = associaoCriador;
+		associacaoCriadorNova.setData(new Date(System.currentTimeMillis()));
+		return associacaoCriadorNova;
+	}
 	
 	public AssociacaoCriador atualizar(Long codigo, AssociacaoCriador associacaoCriador) {
 		AssociacaoCriador associacaoCriadorSalva = buscarAssociacaoCriadorPeloCodigo(codigo);
