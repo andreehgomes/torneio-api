@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +48,7 @@ public class AssociacaoCriadorResource {
 		return !retorno.isEmpty() ? ResponseEntity.ok(retorno.get()) : ResponseEntity.notFound().build();
 	}
 	
+	@PostMapping
 	public ResponseEntity<AssociacaoCriador> incluir(@Valid @RequestBody AssociacaoCriador associacaoCriador, HttpServletResponse response){
 		AssociacaoCriador associacaoCriadorSalvo = associacaoCriadorRepository.save(associacaoCriadorService.incluir(associacaoCriador));
 		
@@ -54,6 +57,7 @@ public class AssociacaoCriadorResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(associacaoCriadorSalvo);
 	}
 	
+	@PutMapping("/{codigo}")
 	public ResponseEntity<AssociacaoCriador> atualizar(@PathVariable Long codigo, @Valid @RequestBody AssociacaoCriador associacaoCriador){
 		AssociacaoCriador associacaoCriadorSalvo = associacaoCriadorService.atualizar(codigo, associacaoCriador);
 		return ResponseEntity.status(HttpStatus.OK).body(associacaoCriadorSalvo);
