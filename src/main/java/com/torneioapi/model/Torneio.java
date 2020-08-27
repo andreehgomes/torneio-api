@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "torneio")
 public class Torneio {
@@ -44,6 +46,7 @@ public class Torneio {
 	@JoinColumn(name = "fk_id_especie")
 	private Especie especie;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
 	private List<Etapa> etapa;
 	

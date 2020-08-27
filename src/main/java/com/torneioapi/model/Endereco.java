@@ -30,6 +30,7 @@ public class Endereco {
 	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
 	private Criador criador;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
 	private List<Etapa> etapa;
 	
