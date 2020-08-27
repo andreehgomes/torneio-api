@@ -1,10 +1,13 @@
 package com.torneioapi.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,6 +29,9 @@ public class Endereco {
 	@JsonIgnore
 	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
 	private Criador criador;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
+	private List<Etapa> etapa;
 	
 	public Criador getCriador() {
 		return criador;
@@ -69,6 +75,15 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
+	
+	
+	public List<Etapa> getEtapa() {
+		return etapa;
+	}
+	public void setEtapa(List<Etapa> etapa) {
+		this.etapa = etapa;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +91,8 @@ public class Endereco {
 		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
 		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
+		result = prime * result + ((criador == null) ? 0 : criador.hashCode());
+		result = prime * result + ((etapa == null) ? 0 : etapa.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
@@ -105,6 +122,16 @@ public class Endereco {
 				return false;
 		} else if (!complemento.equals(other.complemento))
 			return false;
+		if (criador == null) {
+			if (other.criador != null)
+				return false;
+		} else if (!criador.equals(other.criador))
+			return false;
+		if (etapa == null) {
+			if (other.etapa != null)
+				return false;
+		} else if (!etapa.equals(other.etapa))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -122,6 +149,8 @@ public class Endereco {
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 

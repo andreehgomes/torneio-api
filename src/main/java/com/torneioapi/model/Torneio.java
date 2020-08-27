@@ -1,13 +1,16 @@
 package com.torneioapi.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -40,6 +43,19 @@ public class Torneio {
 	@ManyToOne
 	@JoinColumn(name = "fk_id_especie")
 	private Especie especie;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
+	private List<Etapa> etapa;
+	
+	
+
+	public List<Etapa> getEtapa() {
+		return etapa;
+	}
+
+	public void setEtapa(List<Etapa> etapa) {
+		this.etapa = etapa;
+	}
 
 	public Long getId() {
 		return id;
@@ -105,6 +121,7 @@ public class Torneio {
 		result = prime * result + ((datainicio == null) ? 0 : datainicio.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((especie == null) ? 0 : especie.hashCode());
+		result = prime * result + ((etapa == null) ? 0 : etapa.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((temporada == null) ? 0 : temporada.hashCode());
@@ -139,6 +156,11 @@ public class Torneio {
 			if (other.especie != null)
 				return false;
 		} else if (!especie.equals(other.especie))
+			return false;
+		if (etapa == null) {
+			if (other.etapa != null)
+				return false;
+		} else if (!etapa.equals(other.etapa))
 			return false;
 		if (id == null) {
 			if (other.id != null)
