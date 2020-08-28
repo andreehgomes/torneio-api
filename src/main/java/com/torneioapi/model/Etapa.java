@@ -1,5 +1,6 @@
 package com.torneioapi.model;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Etapa {
 	private String descricao;
 	
 	@NotNull
-	private OffsetDateTime data;
+	private LocalDateTime data;
 	
 	@NotNull
 	@ManyToOne
@@ -51,11 +52,11 @@ public class Etapa {
 		this.descricao = descricao;
 	}
 
-	public OffsetDateTime getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(OffsetDateTime data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 
