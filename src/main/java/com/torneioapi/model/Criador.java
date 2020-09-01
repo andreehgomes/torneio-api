@@ -39,6 +39,10 @@ public class Criador {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Ave> aves;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
+	private List<Inscricao> inscricoes;
 
 	public String getCpf() {
 		return cpf;

@@ -50,6 +50,10 @@ public class Torneio {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
 	private List<Etapa> etapa;
 	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
+	private List<Inscricao> inscricoes;
+	
 	
 
 	public List<Etapa> getEtapa() {
