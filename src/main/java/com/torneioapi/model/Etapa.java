@@ -1,7 +1,6 @@
 package com.torneioapi.model;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
