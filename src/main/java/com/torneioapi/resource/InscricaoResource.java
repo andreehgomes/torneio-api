@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.torneioapi.event.RecursoCriadoEvent;
 import com.torneioapi.model.Inscricao;
 import com.torneioapi.repository.InscricaoRepository;
+import com.torneioapi.service.InscricaoService;
 
 @RestController
 @RequestMapping("/inscricoes")
@@ -28,6 +29,9 @@ public class InscricaoResource {
 
 	@Autowired
 	private InscricaoRepository inscricaoRepository;
+	
+	@Autowired
+	private InscricaoService inscricaoService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -51,6 +55,12 @@ public class InscricaoResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, inscricaoSalva.getId()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(inscricaoSalva);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Inscricao> atualizar(@PathVariable Long codigo, @Valid @RequestBody Inscricao inscricao){
+		Inscricao inscricaoSalva = inscricaoService.atualizar(codigo, inscricao);
+		return ResponseEntity.status(HttpStatus.OK).body(inscricaoSalva);
 	}
 	
 }
