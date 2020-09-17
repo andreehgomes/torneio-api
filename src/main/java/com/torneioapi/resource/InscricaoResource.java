@@ -51,6 +51,6 @@ public class InscricaoResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, inscricaoSalva.getId()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(inscricaoSalva);
-	}	
+	}
 	
 }
