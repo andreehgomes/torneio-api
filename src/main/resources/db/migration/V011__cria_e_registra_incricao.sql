@@ -5,8 +5,7 @@ CREATE TABLE IF NOT EXISTS inscricao
    fk_id_criador VARCHAR,
    data TIMESTAMP,
    FOREIGN KEY (fk_id_torneio) REFERENCES torneio (id),
-   FOREIGN KEY (fk_id_criador) REFERENCES criador (cpf),
-  
+   FOREIGN KEY (fk_id_criador) REFERENCES criador (cpf)  
 );
 INSERT INTO inscricao
 (

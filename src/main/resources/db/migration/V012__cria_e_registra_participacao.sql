@@ -14,11 +14,11 @@ INSERT INTO participacao
 (
    fk_id_inscricao,
    fk_id_etapa,
-   fk_id_ave,
+   fk_id_ave
 )
 VALUES
 (
    1,
    1,
-   1,
-)
+   1
+);
