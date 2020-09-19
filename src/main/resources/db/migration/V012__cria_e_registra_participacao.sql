@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS participacao
    fk_id_etapa BIGINT,
    fk_id_ave BIGINT,
    marcacao VARCHAR,
-   pontos INT,
+   pontos INT DEFAULT 0,
    FOREIGN KEY (fk_id_inscricao) REFERENCES inscricao (id),
    FOREIGN KEY (fk_id_etapa) REFERENCES etapa (id),
    FOREIGN KEY (fk_id_ave) REFERENCES ave (id)
