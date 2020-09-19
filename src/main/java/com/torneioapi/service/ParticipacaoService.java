@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.BeanDefinitionDsl.BeanSupplierContext;
 import org.springframework.stereotype.Service;
 
 import com.torneioapi.model.Participacao;
