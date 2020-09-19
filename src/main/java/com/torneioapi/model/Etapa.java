@@ -1,13 +1,16 @@
 package com.torneioapi.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +37,17 @@ public class Etapa {
 	@ManyToOne
 	@JoinColumn(name = "fk_id_endereco")
 	private Endereco endereco;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "etapa")
+	private List<Participacao> participacoes;	
+
+	public List<Participacao> getParticipacoes() {
+		return participacoes;
+	}
+
+	public void setParticipacoes(List<Participacao> participacoes) {
+		this.participacoes = participacoes;
+	}
 
 	public Long getId() {
 		return id;
@@ -83,6 +97,7 @@ public class Etapa {
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((participacoes == null) ? 0 : participacoes.hashCode());
 		result = prime * result + ((torneio == null) ? 0 : torneio.hashCode());
 		return result;
 	}
@@ -115,6 +130,11 @@ public class Etapa {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (participacoes == null) {
+			if (other.participacoes != null)
+				return false;
+		} else if (!participacoes.equals(other.participacoes))
 			return false;
 		if (torneio == null) {
 			if (other.torneio != null)
