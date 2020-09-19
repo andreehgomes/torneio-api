@@ -41,6 +41,7 @@ public class Ave {
 	private boolean ativo;
 	private Timestamp data_cadastro;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ave")
 	private List<Participacao> participacoes;	
 	

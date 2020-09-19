@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "etapa")
 public class Etapa {
@@ -38,6 +40,7 @@ public class Etapa {
 	@JoinColumn(name = "fk_id_endereco")
 	private Endereco endereco;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "etapa")
 	private List<Participacao> participacoes;	
 
