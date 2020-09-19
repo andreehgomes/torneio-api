@@ -1,13 +1,16 @@
 package com.torneioapi.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -30,6 +33,17 @@ public class Inscricao {
 	@JoinColumn(name = "fk_id_criador")
 	private Criador criador;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "inscricao")
+	private List<Participacao> participacoes;	
+	
+
+	public List<Participacao> getParticipacoes() {
+		return participacoes;
+	}
+
+	public void setParticipacoes(List<Participacao> participacoes) {
+		this.participacoes = participacoes;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,6 +84,7 @@ public class Inscricao {
 		result = prime * result + ((criador == null) ? 0 : criador.hashCode());
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((participacoes == null) ? 0 : participacoes.hashCode());
 		result = prime * result + ((torneio == null) ? 0 : torneio.hashCode());
 		return result;
 	}
@@ -97,6 +112,11 @@ public class Inscricao {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (participacoes == null) {
+			if (other.participacoes != null)
+				return false;
+		} else if (!participacoes.equals(other.participacoes))
 			return false;
 		if (torneio == null) {
 			if (other.torneio != null)
