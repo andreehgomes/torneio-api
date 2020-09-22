@@ -1,6 +1,7 @@
 package com.torneioapi.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.BeanUtils;
@@ -37,6 +38,13 @@ public class AssociacaoCriadorService {
 		}
 		
 		return associacaoCriadorSalva;
+	}
+	
+	public List<AssociacaoCriador> buscarAdminsAtivos(){
+		boolean adm = true;
+		boolean ativo = true;		
+		List<AssociacaoCriador> associacaoCriador = associacaoCriadorRepository.findByAdmAtivo(adm, ativo);
+		return associacaoCriador;
 	}
 	
 }

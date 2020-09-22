@@ -62,5 +62,20 @@ public class AssociacaoCriadorResource {
 		AssociacaoCriador associacaoCriadorSalvo = associacaoCriadorService.atualizar(codigo, associacaoCriador);
 		return ResponseEntity.status(HttpStatus.OK).body(associacaoCriadorSalvo);
 	}
+	
+	@GetMapping("/{adm}/{ativo}")
+	public List<AssociacaoCriador> buscar(@PathVariable boolean adm, @PathVariable boolean ativo){
+		return associacaoCriadorRepository.findByAdmAndAtivo(adm, ativo);
+	}
+	
+	@GetMapping("/admins")
+	public List<AssociacaoCriador> buscarAdminsAtivos(){
+		return associacaoCriadorRepository.findAllAdmAtivos();
+	}
+	
+	@GetMapping("/admins-ativos")
+	public List<AssociacaoCriador> buscarAdminsAtivosSegundo(){
+		return associacaoCriadorService.buscarAdminsAtivos();
+	}
 
 }
