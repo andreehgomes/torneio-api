@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,6 +28,13 @@ public class Criador {
 	private String nome;
 	private String sobrenome;
 	private String telefone;
+	
+	@NotEmpty
+	private String email;
+	
+	@JsonIgnore
+	@NotEmpty
+	private String password;
 	private Timestamp data_cadastro;
 	
 	@JsonIgnore
@@ -43,6 +51,32 @@ public class Criador {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Inscricao> inscricoes;
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Inscricao> getInscricoes() {
+		return inscricoes;
+	}
+
+	public void setInscricoes(List<Inscricao> inscricoes) {
+		this.inscricoes = inscricoes;
+	}
 
 	public String getCpf() {
 		return cpf;
@@ -124,9 +158,12 @@ public class Criador {
 		result = prime * result + ((aves == null) ? 0 : aves.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((ibama == null) ? 0 : ibama.hashCode());
+		result = prime * result + ((inscricoes == null) ? 0 : inscricoes.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
@@ -161,6 +198,11 @@ public class Criador {
 				return false;
 		} else if (!data_cadastro.equals(other.data_cadastro))
 			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
@@ -171,10 +213,20 @@ public class Criador {
 				return false;
 		} else if (!ibama.equals(other.ibama))
 			return false;
+		if (inscricoes == null) {
+			if (other.inscricoes != null)
+				return false;
+		} else if (!inscricoes.equals(other.inscricoes))
+			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
 			return false;
 		if (sobrenome == null) {
 			if (other.sobrenome != null)
