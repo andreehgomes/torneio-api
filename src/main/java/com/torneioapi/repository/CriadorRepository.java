@@ -7,7 +7,5 @@ import com.torneioapi.model.Criador;
 
 @Repository
 public interface CriadorRepository extends JpaRepository<Criador, String> {
-	
-	Criador findByCpf(String cpf);
 
 }
