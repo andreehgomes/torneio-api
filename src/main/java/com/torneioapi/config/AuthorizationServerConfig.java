@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -22,12 +21,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		clients.inMemory()
-			.withClient("angular")
-			.secret("angular")
-			.scopes("read", "wirte")
-			.authorizedGrantTypes("passord")
-			.accessTokenValiditySeconds(1800);
+			.withClient("torneio")
+			.secret(passwordEncoder.encode("torneio"))
+			.scopes("read", "write")
+			.authorizedGrantTypes("password")
+			.accessTokenValiditySeconds(9000);
 	}
 	
 	@Override
@@ -40,18 +40,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean
 	public TokenStore tokenStore() {
 		return new InMemoryTokenStore();
-	}
-	
-	@Bean 
-	public AuthenticationManager anthenticationManager() {
-		return new AuthenticationManager() {
-			
-			@Override
-			public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};
 	}
 	
 }

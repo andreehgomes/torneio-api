@@ -1,9 +1,9 @@
-package com.torneioapi.config;
+ package com.torneioapi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,23 +13,20 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
-import com.torneioapi.service.CriadorUserDetailService;
-
 @EnableWebSecurity
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Autowired
-	private CriadorUserDetailService CriadorUserDetailService;		
-	
-	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(CriadorUserDetailService).passwordEncoder(new BCryptPasswordEncoder());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		auth.inMemoryAuthentication()
+			.withUser("admin").password(passwordEncoder.encode("admin")).roles("ROLE");
 	}
 	
 	@Override
-	public void configure(HttpSecurity http) throws Exception {		
+	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.anyRequest().authenticated()
 			.and()
@@ -42,5 +39,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.stateless(true);
 	}
-
 }
