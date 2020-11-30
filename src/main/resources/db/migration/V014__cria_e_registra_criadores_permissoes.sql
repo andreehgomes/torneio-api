@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS criador_permissao(
-	id BIGSERIAL PRIMARY KEY,
 	fk_id_criador VARCHAR(14),
 	fk_id_permissao BIGINT,
+	PRIMARY KEY (fk_id_criador, fk_id_permissao),
 	FOREIGN KEY (fk_id_criador) REFERENCES criador(cpf),
 	FOREIGN KEY (fk_id_permissao) REFERENCES permissao(id)
 );
@@ -14,7 +14,6 @@ INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('070111222
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',6);
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',7);
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',8);
-INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',9);
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',9);
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',10);
 INSERT INTO criador_permissao(fk_id_criador, fk_id_permissao) VALUES ('07011122243',11);

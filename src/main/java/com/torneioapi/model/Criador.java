@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -46,9 +49,21 @@ public class Criador {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Inscricao> inscricoes;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "criador_permissao", joinColumns = @JoinColumn(name = "fk_id_criador"), inverseJoinColumns = @JoinColumn(name = "fk_id_permissao"))
+	private List<Permissao> permissoes;
 
 	
 	
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -149,6 +164,7 @@ public class Criador {
 		result = prime * result + ((ibama == null) ? 0 : ibama.hashCode());
 		result = prime * result + ((inscricoes == null) ? 0 : inscricoes.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((permissoes == null) ? 0 : permissoes.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
@@ -203,6 +219,11 @@ public class Criador {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (permissoes == null) {
+			if (other.permissoes != null)
+				return false;
+		} else if (!permissoes.equals(other.permissoes))
 			return false;
 		if (senha == null) {
 			if (other.senha != null)
