@@ -37,12 +37,33 @@ public class Criador {
 	@JoinColumn(name = "fk_id_endereco")
 	private Endereco endereco;
 	
+	@NotNull
+	private String senha;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Ave> aves;
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "criador")
 	private List<Inscricao> inscricoes;
+
+	
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Inscricao> getInscricoes() {
+		return inscricoes;
+	}
+
+	public void setInscricoes(List<Inscricao> inscricoes) {
+		this.inscricoes = inscricoes;
+	}
 
 	public String getCpf() {
 		return cpf;
@@ -126,7 +147,9 @@ public class Criador {
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((ibama == null) ? 0 : ibama.hashCode());
+		result = prime * result + ((inscricoes == null) ? 0 : inscricoes.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
@@ -171,10 +194,20 @@ public class Criador {
 				return false;
 		} else if (!ibama.equals(other.ibama))
 			return false;
+		if (inscricoes == null) {
+			if (other.inscricoes != null)
+				return false;
+		} else if (!inscricoes.equals(other.inscricoes))
+			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
 			return false;
 		if (sobrenome == null) {
 			if (other.sobrenome != null)
