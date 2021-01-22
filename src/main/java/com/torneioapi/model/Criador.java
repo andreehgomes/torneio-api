@@ -24,12 +24,14 @@ public class Criador {
 	@Id
 	@NotNull
 	private String cpf;
+	private String rg;
 	private String ibama;
 	
 	@NotNull
 	private String nome;
 	private String sobrenome;
 	private String telefone;
+	private String email;
 	private Timestamp data_cadastro;
 	
 	@JsonIgnore
@@ -62,6 +64,16 @@ public class Criador {
 
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+	
+	
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 
 	public String getSenha() {
@@ -119,6 +131,15 @@ public class Criador {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Timestamp getData_cadastro() {
 		return data_cadastro;
@@ -160,6 +181,7 @@ public class Criador {
 		result = prime * result + ((aves == null) ? 0 : aves.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((ibama == null) ? 0 : ibama.hashCode());
 		result = prime * result + ((inscricoes == null) ? 0 : inscricoes.hashCode());
@@ -199,6 +221,11 @@ public class Criador {
 			if (other.data_cadastro != null)
 				return false;
 		} else if (!data_cadastro.equals(other.data_cadastro))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		if (endereco == null) {
 			if (other.endereco != null)

@@ -49,6 +49,11 @@ public class AssociacaoResource {
 
 		return !retorno.isEmpty() ? ResponseEntity.ok(retorno.get()) : ResponseEntity.notFound().build();
 	}
+	
+	@GetMapping("/uf/{uf}")
+	public List<Associacao> buscarAssociacaoPeloUf(@PathVariable String uf){
+		return associacaoRepository.findAllByUf(uf);
+	}
 
 	@PostMapping
 	public ResponseEntity<Associacao> incluir(@Valid @RequestBody Associacao associacao, HttpServletResponse response) {

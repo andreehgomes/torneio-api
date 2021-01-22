@@ -25,6 +25,8 @@ public class Endereco {
 	private String bairro;
 	private String complemento;
 	private String cep;
+	private String cidade;
+	private String uf;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
@@ -34,6 +36,19 @@ public class Endereco {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "torneio")
 	private List<Etapa> etapa;
 	
+	
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
 	public Criador getCriador() {
 		return criador;
 	}

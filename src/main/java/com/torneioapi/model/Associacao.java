@@ -31,6 +31,8 @@ public class Associacao {
 	private String nome;
 
 	private String cidade;
+	
+	private String uf;
 
 	private Timestamp data_cadastro;
 
@@ -46,6 +48,20 @@ public class Associacao {
 	public List<Temporada> getTemporadas() {
 		return temporadas;
 	}
+	
+	
+
+	public String getUf() {
+		return uf;
+	}
+
+
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -119,6 +135,7 @@ public class Associacao {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
 		result = prime * result + ((temporadas == null) ? 0 : temporadas.hashCode());
+		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
 		return result;
 	}
 
@@ -170,6 +187,11 @@ public class Associacao {
 			if (other.temporadas != null)
 				return false;
 		} else if (!temporadas.equals(other.temporadas))
+			return false;
+		if (uf == null) {
+			if (other.uf != null)
+				return false;
+		} else if (!uf.equals(other.uf))
 			return false;
 		return true;
 	}
