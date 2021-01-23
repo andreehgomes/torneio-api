@@ -37,6 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			.antMatchers("/criadores").permitAll()
 			.antMatchers("/associacao-criador").permitAll()
 			.antMatchers("/enderecos").permitAll()
+			.antMatchers("/torneios").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
